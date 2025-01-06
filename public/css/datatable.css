@@ -1,0 +1,88 @@
+/* text entries per page */
+.dt-length label {
+    color: #1D2955;
+}
+html.dark .dt-length label {
+    color: #7F8A56;
+}
+
+/* select page number */
+.dt-length select {
+    color: #1D2955;
+    width: 64px;
+    margin-right: 8px;
+}
+html.dark .dt-length select {
+    color: #7F8A56;
+}
+
+/* select container */
+html.dark .dt-container .dt-length select {
+    background-color: transparent;
+    border: 1px solid #7F8A56;
+}
+
+/* select option */
+html.dark .dt-container .dt-length option {
+    color: #1D2955;
+    background-color: white;
+}
+
+/* text search */
+.dt-search label {
+    color: #1D2955;
+}
+html.dark .dt-search label {
+    color: #7F8A56;
+}
+
+/* search input container */
+html.dark .dt-container .dt-search input {
+    background-color: white;
+    border: 1px solid #7F8A56;
+    margin-left: 8px;
+    color: #1D2955;
+}
+
+/* text pagination showing number */
+div.dt-container .dt-info {
+    color: #1D2955;
+}
+html.dark div.dt-container .dt-info {
+    color: #7F8A56;
+}
+
+/* button next previous number */
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button {
+    color: #1D2955 !important;
+}
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+div.dt-container .dt-paging .dt-paging-button.disabled:active,
+div.dt-container .dt-paging .dt-paging-button.current:hover,
+html.dark .dt-container .dt-paging .dt-paging-button.disabled,
+html.dark .dt-container .dt-paging .dt-paging-button.disabled:hover,
+html.dark .dt-container .dt-paging .dt-paging-button.disabled:active,
+html.dark div.dt-container .dt-paging .dt-paging-button {
+    color: #7F8A56 !important;
+}
+
+/* button background */
+div.dt-container .dt-paging .dt-paging-button:hover {
+    background: #D8CAA7 !important;
+    border: 1px solid transparent !important;
+}
+
+/* responsive title detail */
+table.dataTable > tbody > tr.child span.dtr-title {
+    background: rgb(59 130 246) !important;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 6px 4px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+}

@@ -16,6 +16,13 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'spring-wood': '#F2F0E7',
+                'avocado': '#7F8A56',
+                'regal-blue': '#1D2955',
+                'akaroa': '#D8CAA7',
+                'rose': '#AC274F',
+            },
         },
     },
 
