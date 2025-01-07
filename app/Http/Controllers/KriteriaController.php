@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KriteriaRequest;
+use App\Http\Resources\KriteriaResource;
 use App\Models\Kriteria;
+use App\Models\Penilaian;
+use App\Models\SubKriteria;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class KriteriaController extends Controller
 {
@@ -12,54 +17,76 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $title = "Kriteria";
+        $kriteria = KriteriaResource::collection(Kriteria::all()->sortBy('created_at', false));
+        $sumBobot = $kriteria->sum('bobot');
+        return view('dashboard.kriteria.index', compact('title', 'kriteria', 'sumBobot'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KriteriaRequest $request)
     {
-        //
-    }
+        $validated = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kriteria $kriteria)
-    {
-        //
+        $this->checkSumBobot($request->id, $validated['bobot']);
+
+        $simpan = Kriteria::create($validated);
+        if ($simpan) {
+            return to_route('kriteria')->with('success', 'Kriteria Berhasil Disimpan');
+        } else {
+            return to_route('kriteria')->with('error', 'Kriteria Gagal Disimpan');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kriteria $kriteria)
+    public function edit(Request $request)
     {
-        //
+        $kriteria = Kriteria::find($request->kriteria_id);
+        return $kriteria;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kriteria $kriteria)
+    public function update(KriteriaRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $this->checkSumBobot($request->id, $validated['bobot']);
+
+        $perbarui = Kriteria::where('id', $request->id)->update($validated);
+        if ($perbarui) {
+            return to_route('kriteria')->with('success', 'Kriteria Berhasil Diperbarui');
+        } else {
+            return to_route('kriteria')->with('error', 'Kriteria Gagal Diperbarui');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kriteria $kriteria)
+    public function delete(Request $request)
     {
-        //
+        Penilaian::where('kriteria_id', $request->kriteria_id)->delete();
+        SubKriteria::where('kriteria_id', $request->kriteria_id)->delete();
+        $hapus = Kriteria::where('id', $request->kriteria_id)->delete();
+        if ($hapus) {
+            return to_route('kriteria')->with('success', 'Kriteria Berhasil Dihapus');
+        } else {
+            return to_route('kriteria')->with('error', 'Kriteria Gagal Dihapus');
+        }
+    }
+
+    public function checkSumBobot($kriteria_id, $bobot)
+    {
+        $sumBobot = Kriteria::where('id', '!=', $kriteria_id)->sum('bobot') + $bobot;
+        if ($sumBobot > 1) {
+            throw ValidationException::withMessages(['bobot' => 'Total bobot tidak boleh lebih dari 1']);
+        }
+        return true;
     }
 }

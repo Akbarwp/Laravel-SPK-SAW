@@ -1,3 +1,3 @@
 @props(['value'])
 
-<span>{{ $value }} <span class="text-error">*</span></span>
+<span>{{ $value ?? $slot }} <span class="text-error">*</span></span>

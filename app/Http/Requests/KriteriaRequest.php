@@ -22,8 +22,8 @@ class KriteriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kriteria' => 'required|string|max:255',
-            'bobot' => 'required|decimal:0,2|min:0',
+            'kriteria' => 'required|string|max:255|unique:kriteria,kriteria,' . $this->id,
+            'bobot' => 'required|decimal:0,2|min:0|max:1',
         ];
     }
 }

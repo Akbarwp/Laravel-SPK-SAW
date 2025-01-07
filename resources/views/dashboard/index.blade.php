@@ -175,12 +175,12 @@
                             <div class="w-2/3 max-w-full flex-none px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold uppercase leading-normal dark:text-regal-blue">Kriteria</p>
-                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">5</h5>
+                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">{{ $jmlKriteria }}</h5>
                                 </div>
                             </div>
                             <div class="basis-1/3 px-3 text-right">
                                 <div class="rounded-circle inline-block h-12 w-12 bg-gradient-to-tl from-avocado to-akaroa text-center">
-                                    <i class="ri-home-smile-line relative top-3 text-2xl leading-none text-white"></i>
+                                    <i class="ri-puzzle-line relative top-3 text-2xl leading-none text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -196,12 +196,12 @@
                             <div class="w-2/3 max-w-full flex-none px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold uppercase leading-normal dark:text-regal-blue">Sub Kriteria</p>
-                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">10</h5>
+                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">{{ $jmlSubKriteria }}</h5>
                                 </div>
                             </div>
                             <div class="basis-1/3 px-3 text-right">
                                 <div class="rounded-circle inline-block h-12 w-12 bg-gradient-to-tl from-avocado to-akaroa text-center">
-                                    <i class="ri-earth-line relative top-3 text-2xl leading-none text-white"></i>
+                                    <i class="ri-puzzle-2-fill relative top-3 text-2xl leading-none text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -217,12 +217,12 @@
                             <div class="w-2/3 max-w-full flex-none px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold uppercase leading-normal dark:text-regal-blue">Alternatif</p>
-                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">12</h5>
+                                    <h5 class="text-avodaco mb-2 font-bold dark:text-white">{{ $jmlAlternatif }}</h5>
                                 </div>
                             </div>
                             <div class="basis-1/3 px-3 text-right">
                                 <div class="rounded-circle inline-block h-12 w-12 bg-gradient-to-tl from-avocado to-akaroa text-center">
-                                    <i class="ri-file-paper-2-line relative top-3 text-2xl leading-none text-white"></i>
+                                    <i class="ri-survey-line relative top-3 text-2xl leading-none text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                         Metode SAW membutuhkan proses normalisasi matriks keputusan (X) ke suatu skala yang dapat diperbandingkan dengan
                         semua rating alternatif.
                     </p>
-                    <a class="group text-sm font-semibold leading-normal text-regal-blue" href="#">
+                    <a class="group text-sm font-semibold leading-normal text-regal-blue" href="{{ route("kriteria") }}">
                         Mulai
                         <i class="ri-arrow-right-line ease-bounce group-hover:translate-x-1.25 ml-1 text-sm leading-normal transition-all duration-200"></i>
                     </a>
@@ -262,10 +262,6 @@
                         <li>Penilaian secara lebih tepat karena didasarkan pada nilai kriteria dan bobot preferensi yang sudah ditentukan.</li>
                         <li>Dapat menyeleksi alternatif terbaik dari sejumlah alternatif yang ada karena adanya proses perankingan setelah menentukan nilai bobot untuk setiap atribut.</li>
                     </ul>
-                    <a class="group text-sm font-semibold leading-normal text-regal-blue" href="#">
-                        Mulai
-                        <i class="ri-arrow-right-line ease-bounce group-hover:translate-x-1.25 ml-1 text-sm leading-normal transition-all duration-200"></i>
-                    </a>
                 </div>
             </div>
         </div>

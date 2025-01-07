@@ -48,7 +48,7 @@
     @if ($errors->any())
         Swal.fire({
             title: 'Gagal',
-            text: '{{ $title }} Gagal Dibuat',
+            text: 'Terjadi kesalahan, silakan coba kembali',
             icon: 'error',
             confirmButtonColor: '#6419E6',
             confirmButtonText: 'OK',

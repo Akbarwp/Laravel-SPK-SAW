@@ -119,8 +119,7 @@
                 <li class="flex items-center pl-4 xl:pr-4">
                     <a class="ease-nav-brand block px-0 py-2 text-base font-semibold text-white transition-all">
                         <i class="ri-user-3-fill sm:mr-1"></i>
-                        {{-- <span class="hidden sm:inline">{{ auth()->user()->username }}</span> --}}
-                        <span class="hidden sm:inline">User</span>
+                        <span class="hidden sm:inline">{{ auth()->user()->name }}</span>
                     </a>
                 </li>
                 <li class="flex items-center px-4 xl:hidden">
