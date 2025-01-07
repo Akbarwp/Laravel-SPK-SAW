@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\SubKriteria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +16,61 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin Admin',
+            'email' => 'admin@gmail.com',
         ]);
+
+        $kriteria[] = Kriteria::factory()->create([
+            'kriteria' => 'Rasa',
+            'bobot' => '0.25',
+        ]);
+        $kriteria[] = Kriteria::factory()->create([
+            'kriteria' => 'Harga',
+            'bobot' => '0.25',
+        ]);
+        $kriteria[] = Kriteria::factory()->create([
+            'kriteria' => 'Biji Kopi',
+            'bobot' => '0.2',
+        ]);
+        $kriteria[] = Kriteria::factory()->create([
+            'kriteria' => 'Kuantitas Kopi',
+            'bobot' => '0.2',
+        ]);
+        $kriteria[] = Kriteria::factory()->create([
+            'kriteria' => 'Metode Penyeduhan',
+            'bobot' => '0.1',
+        ]);
+
+        $subKriteria = ['Sangat Baik', 'Baik', 'Cukup', 'Buruk', 'Sangat Buruk'];
+        foreach ($kriteria as $item) {
+            SubKriteria::factory()->create([
+                'sub_kriteria' => $subKriteria[0],
+                'bobot' => 5,
+                'kriteria_id' => $item->id,
+            ]);
+            SubKriteria::factory()->create([
+                'sub_kriteria' => $subKriteria[1],
+                'bobot' => 4,
+                'kriteria_id' => $item->id,
+            ]);
+            SubKriteria::factory()->create([
+                'sub_kriteria' => $subKriteria[2],
+                'bobot' => 3,
+                'kriteria_id' => $item->id,
+            ]);
+            SubKriteria::factory()->create([
+                'sub_kriteria' => $subKriteria[3],
+                'bobot' => 2,
+                'kriteria_id' => $item->id,
+            ]);
+            SubKriteria::factory()->create([
+                'sub_kriteria' => $subKriteria[4],
+                'bobot' => 1,
+                'kriteria_id' => $item->id,
+            ]);
+        }
+
+        Alternatif::factory(4)->create();
     }
 }
