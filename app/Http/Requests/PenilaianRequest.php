@@ -22,9 +22,9 @@ class PenilaianRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'alternatif_id' => 'required|numeric|exists:App\Models\Alternatif,id',
-            'kriteria_id' => 'required|numeric|exists:App\Models\Kriteria,id',
-            'sub_kriteria_id' => 'required|numeric|exists:App\Models\SubKriteria,id',
+            'alternatif_id' => 'required|exists:App\Models\Alternatif,id',
+            'kriteria_id' => 'required|array',
+            'sub_kriteria_id' => 'required|array',
         ];
     }
 }

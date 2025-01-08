@@ -1,4 +1,4 @@
-<aside class="ease-nav-brand z-990 fixed inset-y-0 my-4 block w-full max-w-64 -translate-x-full flex-wrap items-center justify-between overflow-y-hidden rounded-2xl border-0 bg-spring-wood dark:bg-spring-wood p-0 antialiased shadow-xl transition-transform duration-200 dark:shadow-none xl:left-0 xl:ml-6 xl:translate-x-0" aria-expanded="false">
+<aside class="ease-nav-brand z-990 fixed inset-y-0 my-4 block w-full max-w-64 -translate-x-full flex-wrap items-center justify-between overflow-y-hidden rounded-2xl border-0 bg-spring-wood p-0 antialiased shadow-xl transition-transform duration-200 dark:bg-spring-wood dark:shadow-none xl:left-0 xl:ml-6 xl:translate-x-0" aria-expanded="false">
     <div class="h-19">
         <i class="ri-close-large-fill absolute right-0 top-0 cursor-pointer p-4 text-rose opacity-50 xl:hidden" sidenav-close></i>
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-regal-blue" href="{{ route("dashboard") }}">
@@ -23,7 +23,7 @@
 
             {{-- Awal Data Master --}}
             <li class="mt-4 w-full">
-                <h6 class="ml-2 pl-6 text-xs font-bold uppercase leading-tight opacity-60 text-regal-blue">Data Master</h6>
+                <h6 class="ml-2 pl-6 text-xs font-bold uppercase leading-tight text-regal-blue opacity-60">Data Master</h6>
             </li>
 
             <li class="mt-0.5 w-full">
@@ -54,8 +54,41 @@
             </li>
             {{-- Akhir Data Master --}}
 
+            {{-- Awal SAW --}}
             <li class="mt-4 w-full">
-                <h6 class="ml-2 pl-6 text-xs font-bold uppercase leading-tight opacity-60 text-regal-blue">Pengaturan</h6>
+                <h6 class="ml-2 pl-6 text-xs font-bold uppercase leading-tight text-regal-blue opacity-60">SAW</h6>
+            </li>
+
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["penilaian"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("penilaian") }}">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="ri-arrow-right-down-long-line relative top-0 text-lg leading-normal text-rose"></i>
+                    </div>
+                    <span class="ease pointer-events-none ml-1 opacity-100 duration-300">Penilaian</span>
+                </a>
+            </li>
+
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["matriks-keputusan"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("matriks-keputusan") }}">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="ri-seo-fill relative top-0 text-lg leading-normal text-rose"></i>
+                    </div>
+                    <span class="ease pointer-events-none ml-1 opacity-100 duration-300">Matriks Keputusan</span>
+                </a>
+            </li>
+
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["ranking"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("ranking") }}">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="ri-stack-fill relative top-0 text-lg leading-normal text-rose"></i>
+                    </div>
+                    <span class="ease pointer-events-none ml-1 opacity-100 duration-300">Hasil Akhir</span>
+                </a>
+            </li>
+            {{-- Akhir SAW --}}
+
+            <li class="mt-4 w-full">
+                <h6 class="ml-2 pl-6 text-xs font-bold uppercase leading-tight text-regal-blue opacity-60">Pengaturan</h6>
             </li>
 
             <li class="mt-0.5 w-full">

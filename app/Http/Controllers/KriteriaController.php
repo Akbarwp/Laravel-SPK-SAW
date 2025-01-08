@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\KriteriaRequest;
 use App\Http\Resources\KriteriaResource;
+use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubKriteria;
@@ -18,7 +19,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $title = "Kriteria";
-        $kriteria = KriteriaResource::collection(Kriteria::all()->sortBy('created_at', SORT_REGULAR, false));
+        $kriteria = KriteriaResource::collection(Kriteria::get()->sortBy('created_at', SORT_REGULAR, false));
         $sumBobot = $kriteria->sum('bobot');
         return view('dashboard.kriteria.index', compact('title', 'kriteria', 'sumBobot'));
     }
@@ -32,8 +33,20 @@ class KriteriaController extends Controller
 
         $this->checkSumBobot($request->id, $validated['bobot']);
 
-        $simpan = Kriteria::create($validated);
-        if ($simpan) {
+        $kriteria = Kriteria::create($validated);
+        $createPenilaian = true;
+        $alternatif = Alternatif::get('id');
+        if ($alternatif->first()) {
+            foreach ($alternatif as $item) {
+                $createPenilaian = Penilaian::create([
+                    'alternatif_id' => $item->id,
+                    'kriteria_id' => $kriteria->id,
+                    'sub_kriteria_id' => null,
+                ]);
+            }
+        }
+
+        if ($createPenilaian) {
             return to_route('kriteria')->with('success', 'Kriteria Berhasil Disimpan');
         } else {
             return to_route('kriteria')->with('error', 'Kriteria Gagal Disimpan');

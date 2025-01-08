@@ -269,19 +269,19 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($subKriteria->where("kriteria_id", $kri->id) as $item)
-                                            <tr class="border-b border-slate-600 bg-transparent text-left align-middle">
+                                            <tr class="border-b border-slate-600 bg-transparent">
                                                 <td>
-                                                    <p class="text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                    <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
                                                         {{ $item->sub_kriteria }}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                    <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
                                                         {{ $item->bobot }}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <div>
+                                                    <div class="text-center align-middle">
                                                         <label for="edit_button" class="btn btn-outline btn-warning btn-sm" onclick="return edit_button('{{ $item->id }}')">
                                                             <i class="ri-pencil-fill text-base"></i>
                                                         </label>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Alternatif;
 use App\Models\Kriteria;
+use App\Models\Penilaian;
 use App\Models\SubKriteria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -71,6 +72,16 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Alternatif::factory(4)->create();
+        $alternatif = Alternatif::factory(4)->create();
+
+        foreach ($alternatif as $item) {
+            foreach ($kriteria as $value) {
+                Penilaian::create([
+                    'alternatif_id' => $item->id,
+                    'kriteria_id' => $value->id,
+                    'sub_kriteria_id' => null,
+                ]);
+            }
+        }
     }
 }

@@ -18,8 +18,8 @@ class SubKriteriaController extends Controller
     public function index()
     {
         $title = "Sub Kriteria";
-        $kriteria = KriteriaResource::collection(Kriteria::all()->sortBy('created_at', SORT_REGULAR, false));
-        $subKriteria = SubKriteriaResource::collection(SubKriteria::all()->sortBy('bobot', SORT_REGULAR, true));
+        $kriteria = KriteriaResource::collection(Kriteria::get()->sortBy('created_at', SORT_REGULAR, false));
+        $subKriteria = SubKriteriaResource::collection(SubKriteria::get()->sortBy('bobot', SORT_REGULAR, true));
         return view('dashboard.sub-kriteria.index', compact('title', 'kriteria', 'subKriteria'));
     }
 
@@ -67,7 +67,7 @@ class SubKriteriaController extends Controller
      */
     public function delete(Request $request)
     {
-        Penilaian::where('sub_kriteria_id', $request->sub_kriteria_id)->delete();
+        Penilaian::where('sub_kriteria_id', $request->sub_kriteria_id)->update(['sub_kriteria_id' => null]);
         $hapus = SubKriteria::where('id', $request->sub_kriteria_id)->delete();
         if ($hapus) {
             return to_route('sub-kriteria')->with('success', 'Sub Kriteria '.$request->kriteria_nama.' Berhasil Dihapus');

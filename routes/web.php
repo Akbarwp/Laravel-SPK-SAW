@@ -3,6 +3,8 @@
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\MatriksKeputusanController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubKriteriaController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/hasil-akhir', [DashboardController::class, 'ranking'])->name('ranking');
 
     Route::group([
         'prefix' => 'kriteria',
@@ -47,6 +50,22 @@ Route::middleware('auth')->group(function () {
         Route::get('/ubah', [AlternatifController::class, 'edit'])->name('alternatif.edit');
         Route::post('/ubah', [AlternatifController::class, 'update'])->name('alternatif.update');
         Route::post('/hapus', [AlternatifController::class, 'delete'])->name('alternatif.delete');
+    });
+
+    Route::group([
+        'prefix' => 'penilaian',
+    ], function() {
+        Route::get('/', [PenilaianController::class, 'index'])->name('penilaian');
+        Route::get('/ubah', [PenilaianController::class, 'edit'])->name('penilaian.edit');
+        Route::post('/ubah', [PenilaianController::class, 'update'])->name('penilaian.update');
+    });
+
+    Route::group([
+        'prefix' => 'matriks-keputusan',
+    ], function() {
+        Route::get('/', [MatriksKeputusanController::class, 'index'])->name('matriks-keputusan');
+        Route::get('/ubah', [MatriksKeputusanController::class, 'edit'])->name('matriks-keputusan.edit');
+        Route::post('/ubah', [MatriksKeputusanController::class, 'update'])->name('matriks-keputusan.update');
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlternatifRequest;
 use App\Http\Resources\AlternatifResource;
 use App\Models\Alternatif;
+use App\Models\Kriteria;
 use App\Models\MatriksKeputusan;
 use App\Models\Penilaian;
 use App\Models\Perhitungan;
@@ -18,8 +19,9 @@ class AlternatifController extends Controller
     public function index()
     {
         $title = "Alternatif";
-        $alternatif = AlternatifResource::collection(Alternatif::all()->sortBy('created_at', SORT_REGULAR, true));
-        return view('dashboard.alternatif.index', compact('title', 'alternatif'));
+        $alternatif = AlternatifResource::collection(Alternatif::get()->sortBy('created_at', SORT_REGULAR, true));
+        $anyKriteria = Kriteria::first();
+        return view('dashboard.alternatif.index', compact('title', 'alternatif', 'anyKriteria'));
     }
 
     /**
@@ -29,8 +31,20 @@ class AlternatifController extends Controller
     {
         $validated = $request->validated();
 
-        $simpan = Alternatif::create($validated);
-        if ($simpan) {
+        $alternatif = Alternatif::create($validated);
+        $createPenilaian = true;
+        $kriteria = Kriteria::get('id');
+        if ($kriteria->first()) {
+            foreach (Kriteria::get('id') as $item) {
+                $createPenilaian = Penilaian::create([
+                    'alternatif_id' => $alternatif->id,
+                    'kriteria_id' => $item->id,
+                    'sub_kriteria_id' => null,
+                ]);
+            }
+        }
+
+        if ($createPenilaian) {
             return to_route('alternatif')->with('success', 'Alternatif Berhasil Disimpan');
         } else {
             return to_route('alternatif')->with('error', 'Alternatif Gagal Disimpan');
@@ -78,7 +92,7 @@ class AlternatifController extends Controller
         $penilaian = Penilaian::where('alternatif_id', $request->alternatif_id)->first();
         if ($penilaian) {
             MatriksKeputusan::where('penilaian_id', $penilaian->penilaian_id)->delete();
-            $penilaian->delete();
+            Penilaian::where('alternatif_id', $request->alternatif_id)->delete();
         }
         Perhitungan::where('alternatif_id', $request->alternatif_id)->delete();
         $hapus = Alternatif::where('id', $request->alternatif_id)->delete();

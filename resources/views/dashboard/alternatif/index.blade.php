@@ -270,55 +270,53 @@
 
             {{-- Awal Tabel Sub Kriteria --}}
             <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-spring-wood bg-clip-border shadow-xl dark:bg-white dark:shadow-akaroa/20">
-                <div class="mb-5">
-                    <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
-                        <h6 class="font-bold text-regal-blue">Tabel {{ $title }}</h6>
-                        <div class="w-1/2 max-w-full flex-none px-3 text-right">
-                            <label for="create_button" class="mb-0 inline-block cursor-pointer rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 active:opacity-90 md:px-8 md:py-2" onclick="return create_button()">
-                                <i class="ri-add-fill"></i>
-                                Tambah
-                            </label>
-                        </div>
+                <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
+                    <h6 class="font-bold text-regal-blue">Tabel {{ $title }}</h6>
+                    <div class="w-1/2 max-w-full flex-none px-3 text-right">
+                        <label for="create_button" class="mb-0 inline-block cursor-pointer rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 active:opacity-90 md:px-8 md:py-2" onclick="return create_button()">
+                            <i class="ri-add-fill"></i>
+                            Tambah
+                        </label>
                     </div>
-                    <div class="flex-auto px-0 pb-2 pt-0">
-                        <div class="overflow-x-auto p-0 px-6 pb-6">
-                            <table id="myTable" class="nowrap stripe mb-3 w-full max-w-full border-collapse items-center align-top" style="width: 100%;">
-                                <thead class="align-bottom">
-                                    <tr class="bg-avocado text-xs font-bold uppercase text-white dark:bg-regal-blue dark:text-akaroa">
-                                        <th class="rounded-tl">
-                                            Nama Alternatif
-                                        </th>
-                                        <th class="rounded-tr">
-                                            Aksi
-                                        </th>
+                </div>
+                <div class="flex-auto px-0 pb-2 pt-0">
+                    <div class="overflow-x-auto p-0 px-6 pb-6">
+                        <table id="myTable" class="nowrap stripe mb-3 w-full max-w-full border-collapse items-center align-top" style="width: 100%;">
+                            <thead class="align-bottom">
+                                <tr class="bg-avocado text-xs font-bold uppercase text-white dark:bg-regal-blue dark:text-akaroa">
+                                    <th class="rounded-tl">
+                                        Nama Alternatif
+                                    </th>
+                                    <th class="rounded-tr">
+                                        Aksi
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($alternatif as $item)
+                                    <tr class="border-b border-slate-600 bg-transparent">
+                                        <td>
+                                            <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                {{ $item->alternatif }}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div class="text-center align-middle">
+                                                <label for="show_button" class="btn btn-outline btn-info btn-sm" onclick="return show_button('{{ $item->id }}')">
+                                                    <i class="ri-eye-line text-base"></i>
+                                                </label>
+                                                <label for="edit_button" class="btn btn-outline btn-warning btn-sm" onclick="return edit_button('{{ $item->id }}')">
+                                                    <i class="ri-pencil-fill text-base"></i>
+                                                </label>
+                                                <label for="delete_button" class="btn btn-outline btn-error btn-sm" onclick="return delete_button('{{ $item->id }}')">
+                                                    <i class="ri-delete-bin-line text-base"></i>
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($alternatif as $item)
-                                        <tr class="border-b border-slate-600 bg-transparent text-left align-middle">
-                                            <td>
-                                                <p class="text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
-                                                    {{ $item->alternatif }}
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <label for="show_button" class="btn btn-outline btn-info btn-sm" onclick="return show_button('{{ $item->id }}')">
-                                                        <i class="ri-eye-line text-base"></i>
-                                                    </label>
-                                                    <label for="edit_button" class="btn btn-outline btn-warning btn-sm" onclick="return edit_button('{{ $item->id }}')">
-                                                        <i class="ri-pencil-fill text-base"></i>
-                                                    </label>
-                                                    <label for="delete_button" class="btn btn-outline btn-error btn-sm" onclick="return delete_button('{{ $item->id }}')">
-                                                        <i class="ri-delete-bin-line text-base"></i>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
