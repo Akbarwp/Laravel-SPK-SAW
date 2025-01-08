@@ -17,7 +17,7 @@ class SubKriteriaResource extends JsonResource
         return [
             'sub_kriteria' => $this->sub_kriteria,
             'bobot' => $this->bobot,
-            'kriteria_id' => $this->kriteria_id,
+            'kriteria' => new KriteriaResource($this->kriteria_id),
         ];
     }
 }

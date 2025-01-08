@@ -3,18 +3,16 @@
 @section("js")
     <script>
         $(document).ready(function() {
-            @foreach ($kriteria as $item)
-                $('#myTable_{{ $item->id }}').DataTable({
-                    responsive: {
-                        details: {
-                            type: 'column',
-                            target: 'tr',
-                        },
+            $('#myTable').DataTable({
+                responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr',
                     },
-                    order: [],
-                    pagingType: 'full_numbers',
-                });
-            @endforeach
+                },
+                order: [],
+                pagingType: 'full_numbers',
+            });
         });
 
         function create_button() {
@@ -23,6 +21,38 @@
             $("input[name='kriteria_nama']").val("");
             $("input[name='sub_kriteria']").val("");
             $("input[name='bobot']").val("");
+        }
+
+        function show_button(sub_kriteria_id) {
+            // Loading effect start
+            let loading = `<span class="loading loading-dots loading-md text-purple-600"></span>`;
+            $("#loading_edit1").html(loading);
+            $("#loading_edit2").html(loading);
+            $("#loading_edit3").html(loading);
+
+            $.ajax({
+                type: "get",
+                url: "{{ route("sub-kriteria.edit") }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "sub_kriteria_id": sub_kriteria_id
+                },
+                success: function(data) {
+                    // console.log(data);
+
+                    $("input[name='id']").val(data.id);
+                    $("input[name='sub_kriteria']").val(data.sub_kriteria);
+                    $("input[name='bobot']").val(data.bobot);
+                    $("input[name='kriteria_id']").val(data.kriteria_id);
+                    $("input[name='kriteria_nama']").val(data.kriteria.kriteria);
+
+                    // Loading effect end
+                    loading = "";
+                    $("#loading_edit1").html(loading);
+                    $("#loading_edit2").html(loading);
+                    $("#loading_edit3").html(loading);
+                }
+            });
         }
 
         function edit_button(sub_kriteria_id) {

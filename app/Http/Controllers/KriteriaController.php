@@ -18,7 +18,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $title = "Kriteria";
-        $kriteria = KriteriaResource::collection(Kriteria::all()->sortBy('created_at', false));
+        $kriteria = KriteriaResource::collection(Kriteria::all()->sortBy('created_at', SORT_REGULAR, false));
         $sumBobot = $kriteria->sum('bobot');
         return view('dashboard.kriteria.index', compact('title', 'kriteria', 'sumBobot'));
     }

@@ -16,9 +16,9 @@
         });
 
         function create_button() {
-            $("input[name='id']").val();
-            $("input[name='kriteria']").val();
-            $("input[name='bobot']").val();
+            $("input[name='id']").val("");
+            $("input[name='kriteria']").val("");
+            $("input[name='bobot']").val("");
         }
 
         function edit_button(kriteria_id) {
@@ -103,7 +103,7 @@
             <div class="modal" role="dialog">
                 <div class="modal-box">
                     <div class="mb-3 flex justify-between">
-                        <h3 class="text-lg font-bold">Ubah {{ $title }}</h3>
+                        <h3 class="text-lg font-bold">Tambah {{ $title }}</h3>
                         <label for="create_button" class="cursor-pointer">
                             <i class="ri-close-large-fill"></i>
                         </label>
@@ -197,7 +197,7 @@
             {{-- Awal Tabel Kriteria --}}
             <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-spring-wood bg-clip-border shadow-xl dark:bg-white dark:shadow-akaroa/20">
                 <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
-                    <h6 class="font-bold text-regal-blue">{{ $title }}</h6>
+                    <h6 class="font-bold text-regal-blue">Tabel {{ $title }}</h6>
                     <div class="w-1/2 max-w-full flex-none px-3 text-right">
                         @if (number_format($sumBobot, 2) == 1)
                             <button class="mb-0 inline-block cursor-default rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success opacity-60 shadow-none md:px-8 md:py-2">

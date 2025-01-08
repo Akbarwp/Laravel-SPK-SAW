@@ -32,12 +32,21 @@ Route::middleware('auth')->group(function () {
         'prefix' => 'sub-kriteria',
     ], function() {
         Route::get('/', [SubKriteriaController::class, 'index'])->name('sub-kriteria');
+        Route::post('/simpan', [SubKriteriaController::class, 'store'])->name('sub-kriteria.store');
+        Route::get('/ubah', [SubKriteriaController::class, 'edit'])->name('sub-kriteria.edit');
+        Route::post('/ubah', [SubKriteriaController::class, 'update'])->name('sub-kriteria.update');
+        Route::post('/hapus', [SubKriteriaController::class, 'delete'])->name('sub-kriteria.delete');
     });
 
     Route::group([
         'prefix' => 'alternatif',
     ], function() {
         Route::get('/', [AlternatifController::class, 'index'])->name('alternatif');
+        Route::get('/lihat', [AlternatifController::class, 'show'])->name('alternatif.show');
+        Route::post('/simpan', [AlternatifController::class, 'store'])->name('alternatif.store');
+        Route::get('/ubah', [AlternatifController::class, 'edit'])->name('alternatif.edit');
+        Route::post('/ubah', [AlternatifController::class, 'update'])->name('alternatif.update');
+        Route::post('/hapus', [AlternatifController::class, 'delete'])->name('alternatif.delete');
     });
 });
 

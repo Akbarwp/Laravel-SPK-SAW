@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\SubKriteria;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class SubKriteriaRequest extends FormRequest
 {
@@ -21,6 +23,14 @@ class SubKriteriaRequest extends FormRequest
      */
     public function rules(): array
     {
+        $ignoreSubKriteria = SubKriteria::query()
+            ->where('kriteria_id', $this->kriteria_id)
+            ->where('sub_kriteria', $this->sub_kriteria)
+            ->where('id', '!=', $this->id)
+            ->first();
+        if ($ignoreSubKriteria) {
+            throw ValidationException::withMessages(['sub_kriteria' => 'The sub kriteria has already been taken.']);
+        }
         return [
             'sub_kriteria' => 'required|string|max:255',
             'bobot' => 'required|decimal:0,2|min:0',
