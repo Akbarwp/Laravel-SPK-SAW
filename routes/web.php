@@ -3,7 +3,7 @@
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
-use App\Http\Controllers\MatriksKeputusanController;
+use App\Http\Controllers\SAWController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubKriteriaController;
@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/hasil-akhir', [DashboardController::class, 'ranking'])->name('ranking');
+    Route::get('/hasil-akhir', [DashboardController::class, 'hasilAkhir'])->name('hasil-akhir');
 
     Route::group([
         'prefix' => 'kriteria',
@@ -63,9 +63,15 @@ Route::middleware('auth')->group(function () {
     Route::group([
         'prefix' => 'matriks-keputusan',
     ], function() {
-        Route::get('/', [MatriksKeputusanController::class, 'index'])->name('matriks-keputusan');
-        Route::get('/ubah', [MatriksKeputusanController::class, 'edit'])->name('matriks-keputusan.edit');
-        Route::post('/ubah', [MatriksKeputusanController::class, 'update'])->name('matriks-keputusan.update');
+        Route::get('/', [SAWController::class, 'indexMatriks'])->name('matriks-keputusan');
+        Route::post('/hitung-matriks-keputusan', [SAWController::class, 'hitungMatriksKeputusan'])->name('matriks-keputusan.hitungMatriksKeputusan');
+    });
+
+    Route::group([
+        'prefix' => 'perankingan',
+    ], function() {
+        Route::get('/', [SAWController::class, 'indexRanking'])->name('ranking');
+        Route::post('/hitung-ranking', [SAWController::class, 'hitungRanking'])->name('ranking.hitungRanking');
     });
 });
 

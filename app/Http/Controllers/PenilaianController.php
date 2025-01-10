@@ -18,10 +18,10 @@ class PenilaianController extends Controller
     public function index()
     {
         $title = "Penilaian Alternatif";
-        $kriteria = Kriteria::get(['id', 'kriteria'])->sortBy('id', SORT_REGULAR, false);
-        $subKriteria = SubKriteria::get()->sortBy('kriteria_id', SORT_REGULAR, false);
-        $alternatif = Alternatif::get(['id', 'alternatif'])->sortBy('id', SORT_REGULAR, false);
-        $penilaian = PenilaianResource::collection(Penilaian::get()->sortBy('kriteria_id', SORT_REGULAR, false));
+        $kriteria = Kriteria::orderBy('id', 'asc')->get(['id', 'kriteria']);
+        $subKriteria = SubKriteria::orderBy('kriteria_id', 'asc')->get();
+        $alternatif = Alternatif::orderBy('id', 'asc')->get(['id', 'alternatif']);
+        $penilaian = PenilaianResource::collection(Penilaian::orderBy('kriteria_id', 'asc')->get());
         return view('dashboard.penilaian.index', compact('title', 'kriteria', 'subKriteria', 'alternatif', 'penilaian'));
     }
 

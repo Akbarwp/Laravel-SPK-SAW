@@ -73,15 +73,18 @@ class DatabaseSeeder extends Seeder
         }
 
         $alternatif = Alternatif::factory(4)->create();
+        // foreach ($alternatif as $item) {
+        //     foreach ($kriteria as $value) {
+        //         Penilaian::create([
+        //             'alternatif_id' => $item->id,
+        //             'kriteria_id' => $value->id,
+        //             'sub_kriteria_id' => null,
+        //         ]);
+        //     }
+        // }
 
-        foreach ($alternatif as $item) {
-            foreach ($kriteria as $value) {
-                Penilaian::create([
-                    'alternatif_id' => $item->id,
-                    'kriteria_id' => $value->id,
-                    'sub_kriteria_id' => null,
-                ]);
-            }
-        }
+        $this->call([
+            PenilaianSeeder::class,
+        ]);
     }
 }

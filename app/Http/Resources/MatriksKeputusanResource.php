@@ -14,6 +14,10 @@ class MatriksKeputusanResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'alternatif_id' => new AlternatifResource($this->alternatif_id),
+            'kriteria_id' => new KriteriaResource($this->kriteria_id),
+            'nilai_rating' => $this->nilai_rating,
+        ];
     }
 }

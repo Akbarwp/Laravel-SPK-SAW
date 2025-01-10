@@ -2,7 +2,14 @@
 
 @section("js")
     <script>
-        let chart_perhitungan_kriteria = {
+        let alternatif = [];
+        let nilaiPreferensi = [];
+        @foreach ($nilaiPreferensi as $item)
+            alternatif.push(' {{ $item->alternatif->alternatif }} ');
+            nilaiPreferensi.push(' {{ round($item->nilai_preferensi, 3) }} ');
+        @endforeach
+
+        let chart_perankingan = {
             chart: {
                 height: 300,
                 type: "line",
@@ -12,7 +19,7 @@
                 enabled: false
             },
             series: [{
-                data: [50, 150, 220, 300, 250]
+                data: nilaiPreferensi
             }, ],
             stroke: {
                 curve: 'smooth',
@@ -23,7 +30,7 @@
             },
             colors: ["#7F8A56"],
             xaxis: {
-                categories: ["Kriteria1", "Kriteria2", "Kriteria3", "Kriteria4", "Kriteria5"],
+                categories: alternatif,
                 axisTicks: {
                     show: true
                 },
@@ -37,7 +44,7 @@
                     }
                 },
                 title: {
-                    text: "Kriteria",
+                    text: "Alternatif",
                     style: {
                         color: "#7F8A56"
                     }
@@ -79,87 +86,8 @@
             },
         };
 
-        let chart_perhitungan_alternatif = {
-            chart: {
-                height: 300,
-                type: "line",
-                stacked: true
-            },
-            dataLabels: {
-                enabled: false
-            },
-            series: [{
-                data: [50, 150, 220, 300, 250]
-            }, ],
-            stroke: {
-                curve: 'smooth',
-                width: 4,
-            },
-            marker: {
-                size: 10,
-            },
-            colors: ["#7F8A56"],
-            xaxis: {
-                categories: ["Kriteria1", "Kriteria2", "Kriteria3", "Kriteria4", "Kriteria5"],
-                axisTicks: {
-                    show: true
-                },
-                axisBorder: {
-                    show: true,
-                    color: "#1D2955"
-                },
-                labels: {
-                    style: {
-                        colors: "#1D2955"
-                    }
-                },
-                title: {
-                    text: "Kriteria",
-                    style: {
-                        color: "#7F8A56"
-                    }
-                }
-            },
-            yaxis: [{
-                axisTicks: {
-                    show: true
-                },
-                axisBorder: {
-                    show: true,
-                    color: "#1D2955"
-                },
-                labels: {
-                    style: {
-                        colors: "#1D2955"
-                    }
-                },
-                title: {
-                    text: "Nilai",
-                    style: {
-                        color: "#7F8A56"
-                    }
-                }
-            }, ],
-            tooltip: {
-                enabled: true,
-                shared: false,
-                followCursor: false,
-                x: {
-                    show: false,
-                },
-                y: {
-                    formatter: undefined,
-                    title: {
-                        formatter: (seriesName) => "",
-                    },
-                },
-            },
-        };
-
-        var chart1 = new ApexCharts(document.querySelector("#chart-perhitungan-kriteria"), chart_perhitungan_kriteria);
+        var chart1 = new ApexCharts(document.querySelector("#chart-perankingan"), chart_perankingan);
         chart1.render();
-        const chart2 = new ApexCharts(document.querySelector("#chart-perhitungan-alternatif"), chart_perhitungan_alternatif);
-        chart2.render();
     </script>
 @endsection
 
@@ -268,24 +196,13 @@
 
         <!-- row 4 -->
         <div class="-mx-3 mt-6 flex flex-wrap gap-y-2">
-            <div class="mt-0 w-full max-w-full px-3 lg:w-1/2 lg:flex-none">
+            <div class="mt-0 w-full max-w-full px-3 lg:flex-none">
                 <div class="relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-regal-blue/10 bg-white bg-clip-border shadow-xl dark:shadow-akaroa/20">
                     <div class="mb-0 rounded-t-2xl border-b-0 border-solid border-regal-blue/10 p-6 pb-0 pt-4">
-                        <h6 class="font-semibold capitalize text-regal-blue">Hasil Perhitungan SAW Kriteria Utama</h6>
+                        <h6 class="font-semibold capitalize text-regal-blue">Hasil Perhitungan SAW</h6>
                     </div>
                     <div class="flex-auto p-4">
-                        <div id="chart-perhitungan-kriteria"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-0 w-full max-w-full px-3 lg:w-1/2 lg:flex-none">
-                <div class="relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-regal-blue/10 bg-white bg-clip-border shadow-xl dark:shadow-akaroa/20">
-                    <div class="mb-0 rounded-t-2xl border-b-0 border-solid border-regal-blue/10 p-6 pb-0 pt-4">
-                        <h6 class="font-semibold capitalize text-regal-blue">Hasil Perhitungan SAW Alternatif</h6>
-                    </div>
-                    <div class="flex-auto p-4">
-                        <div id="chart-perhitungan-alternatif"></div>
+                        <div id="chart-perankingan"></div>
                     </div>
                 </div>
             </div>

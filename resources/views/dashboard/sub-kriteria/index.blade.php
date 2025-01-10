@@ -276,7 +276,7 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                    <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
                                                         {{ $item->bobot }}
                                                     </p>
                                                 </td>

@@ -9,6 +9,7 @@ class Perhitungan extends Model
     protected $table = 'perhitungan';
     protected $fillable = [
         'alternatif_id',
+        'kriteria_id',
         'nilai',
     ];
 

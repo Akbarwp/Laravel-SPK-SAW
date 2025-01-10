@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('perhitungan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('alternatif_id')->constrained('alternatif');
+            $table->foreignId('kriteria_id')->constrained('kriteria');
             $table->double('nilai');
             $table->timestamps();
         });

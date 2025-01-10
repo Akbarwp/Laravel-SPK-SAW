@@ -19,7 +19,7 @@ class AlternatifController extends Controller
     public function index()
     {
         $title = "Alternatif";
-        $alternatif = AlternatifResource::collection(Alternatif::get()->sortBy('created_at', SORT_REGULAR, true));
+        $alternatif = AlternatifResource::collection(Alternatif::orderBy('created_at', 'desc')->get());
         $anyKriteria = Kriteria::first();
         return view('dashboard.alternatif.index', compact('title', 'alternatif', 'anyKriteria'));
     }

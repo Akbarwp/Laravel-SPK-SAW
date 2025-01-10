@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('matriks_keputusan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('penilaian_id')->constrained('penilaian');
+            $table->foreignId('alternatif_id')->constrained('alternatif');
+            $table->foreignId('kriteria_id')->constrained('kriteria');
             $table->double('nilai_rating');
             $table->timestamps();
         });

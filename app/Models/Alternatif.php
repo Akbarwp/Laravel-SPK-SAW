@@ -20,6 +20,11 @@ class Alternatif extends Model
         return $this->hasMany(Penilaian::class, "alternatif_id");
     }
 
+    public function matriksKeputusan()
+    {
+        return $this->hasMany(MatriksKeputusan::class, "alternatif_id");
+    }
+
     public function perhitungan()
     {
         return $this->hasMany(Perhitungan::class, "alternatif_id");

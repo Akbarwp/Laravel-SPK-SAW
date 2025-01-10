@@ -17,7 +17,7 @@ class AlternatifFactory extends Factory
     public function definition(): array
     {
         return [
-            'alternatif' => fake()->unique()->name(),
+            'alternatif' => fake()->unique()->word(),
             'keterangan' => fake()->sentence(),
         ];
     }
