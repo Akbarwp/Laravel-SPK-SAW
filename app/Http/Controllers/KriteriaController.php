@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\KriteriaRequest;
 use App\Http\Resources\KriteriaResource;
+use App\Imports\KriteriaImport;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KriteriaController extends Controller
 {
@@ -34,7 +36,7 @@ class KriteriaController extends Controller
         $this->checkSumBobot($request->id, $validated['bobot']);
 
         $kriteria = Kriteria::create($validated);
-        $createPenilaian = true;
+        $createPenilaian = false;
         $alternatif = Alternatif::get('id');
         if ($alternatif->first()) {
             foreach ($alternatif as $item) {
@@ -101,5 +103,36 @@ class KriteriaController extends Controller
             throw ValidationException::withMessages(['bobot' => 'Total bobot tidak boleh lebih dari 1']);
         }
         return true;
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'import_data' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('import_data');
+        Excel::import(new KriteriaImport, $file);
+
+        $kriteria = Kriteria::get('id');
+        $alternatif = Alternatif::get('id');
+        if ($alternatif->first()) {
+            Penilaian::truncate();
+            foreach ($kriteria as $value) {
+                foreach ($alternatif as $item) {
+                    $createPenilaian = Penilaian::create([
+                        'alternatif_id' => $item->id,
+                        'kriteria_id' => $value->id,
+                        'sub_kriteria_id' => null,
+                    ]);
+                }
+            }
+        }
+
+        if ($createPenilaian) {
+            return to_route('kriteria')->with('success', 'Kriteria Berhasil Disimpan');
+        } else {
+            return to_route('kriteria')->with('error', 'Kriteria Gagal Disimpan');
+        }
     }
 }

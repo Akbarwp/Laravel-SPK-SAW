@@ -29,4 +29,9 @@ class Kriteria extends Model
     {
         return $this->hasMany(MatriksKeputusan::class, "alternatif_id");
     }
+
+    public function perhitungan()
+    {
+        return $this->hasMany(Perhitungan::class, "kriteria_id");
+    }
 }

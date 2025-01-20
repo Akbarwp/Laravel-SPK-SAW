@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PenilaianRequest;
 use App\Http\Resources\PenilaianResource;
+use App\Imports\PenilaianImport;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubKriteria;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenilaianController extends Controller
 {
@@ -54,6 +56,22 @@ class PenilaianController extends Controller
             return to_route('penilaian')->with('success', 'Penilaian Alternatif Berhasil Diperbarui');
         } else {
             return to_route('penilaian')->with('error', 'Penilaian Alternatif Gagal Diperbarui');
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'import_data' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('import_data');
+        $import = Excel::import(new PenilaianImport, $file);
+
+        if ($import) {
+            return to_route('penilaian')->with('success', 'Penilaian Berhasil Disimpan');
+        } else {
+            return to_route('penilaian')->with('error', 'Penilaian Gagal Disimpan');
         }
     }
 }

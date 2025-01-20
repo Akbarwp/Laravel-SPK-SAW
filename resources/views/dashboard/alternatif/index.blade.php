@@ -268,6 +268,39 @@
             </div>
             {{-- Akhir Modal Edit --}}
 
+            {{-- Awal Modal Import --}}
+            <input type="checkbox" id="import_button" class="modal-toggle" />
+            <div class="modal" role="dialog">
+                <div class="modal-box">
+                    <div class="mb-3 flex justify-between">
+                        <h3 class="text-lg font-bold">Impor {{ $title }}</h3>
+                        <label for="import_button" class="cursor-pointer">
+                            <i class="ri-close-large-fill"></i>
+                        </label>
+                    </div>
+                    <div>
+                        <form action="{{ route("alternatif.import") }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <label class="form-control w-full">
+                                <div class="label">
+                                    <span class="label-text font-semibold">
+                                        <x-label-input-required>File Excel</x-label-input-required>
+                                    </span>
+                                </div>
+                                <input type="file" name="import_data" class="file-input file-input-bordered w-full bg-spring-wood text-regal-blue" required />
+                                @error("import_data")
+                                    <div class="label">
+                                        <span class="label-text-alt text-sm text-error">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </label>
+                            <button type="submit" class="btn btn-success mt-3 w-full text-regal-blue">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{-- Akhir Modal Import --}}
+
             {{-- Awal Tabel Sub Kriteria --}}
             <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-spring-wood bg-clip-border shadow-xl dark:bg-white dark:shadow-akaroa/20">
                 <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
@@ -276,6 +309,10 @@
                         <label for="create_button" class="mb-0 inline-block cursor-pointer rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 active:opacity-90 md:px-8 md:py-2" onclick="return create_button()">
                             <i class="ri-add-fill"></i>
                             Tambah
+                        </label>
+                        <label for="import_button" class="mb-0 inline-block cursor-pointer rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 active:opacity-90 md:px-8 md:py-2" onclick="return import_button()">
+                            <i class="ri-file-excel-2-line"></i>
+                            Impor
                         </label>
                     </div>
                 </div>

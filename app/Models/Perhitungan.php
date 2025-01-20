@@ -17,4 +17,9 @@ class Perhitungan extends Model
     {
         return $this->belongsTo(Alternatif::class, "alternatif_id");
     }
+
+    public function kriteria()
+    {
+        return $this->belongsTo(Kriteria::class, "kriteria_id");
+    }
 }

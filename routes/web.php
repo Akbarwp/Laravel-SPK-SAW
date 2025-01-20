@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SAWController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/ubah', [KriteriaController::class, 'edit'])->name('kriteria.edit');
         Route::post('/ubah', [KriteriaController::class, 'update'])->name('kriteria.update');
         Route::post('/hapus', [KriteriaController::class, 'delete'])->name('kriteria.delete');
+        Route::post('/impor', [KriteriaController::class, 'import'])->name('kriteria.import');
     });
 
     Route::group([
@@ -39,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/ubah', [SubKriteriaController::class, 'edit'])->name('sub-kriteria.edit');
         Route::post('/ubah', [SubKriteriaController::class, 'update'])->name('sub-kriteria.update');
         Route::post('/hapus', [SubKriteriaController::class, 'delete'])->name('sub-kriteria.delete');
+        Route::post('/impor', [SubKriteriaController::class, 'import'])->name('sub-kriteria.import');
     });
 
     Route::group([
@@ -50,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/ubah', [AlternatifController::class, 'edit'])->name('alternatif.edit');
         Route::post('/ubah', [AlternatifController::class, 'update'])->name('alternatif.update');
         Route::post('/hapus', [AlternatifController::class, 'delete'])->name('alternatif.delete');
+        Route::post('/impor', [AlternatifController::class, 'import'])->name('alternatif.import');
     });
 
     Route::group([
@@ -58,6 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [PenilaianController::class, 'index'])->name('penilaian');
         Route::get('/ubah', [PenilaianController::class, 'edit'])->name('penilaian.edit');
         Route::post('/ubah', [PenilaianController::class, 'update'])->name('penilaian.update');
+        Route::post('/impor', [PenilaianController::class, 'import'])->name('penilaian.import');
     });
 
     Route::group([
@@ -72,6 +77,7 @@ Route::middleware('auth')->group(function () {
     ], function() {
         Route::get('/', [SAWController::class, 'indexRanking'])->name('ranking');
         Route::post('/hitung-ranking', [SAWController::class, 'hitungRanking'])->name('ranking.hitungRanking');
+        Route::get('/pdf-hasil-akhir', [PDFController::class, 'pdf_hasil'])->name('pdf.hasilAkhir');
     });
 });
 

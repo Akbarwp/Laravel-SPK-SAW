@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlternatifRequest;
 use App\Http\Resources\AlternatifResource;
+use App\Imports\AlternatifImport;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\MatriksKeputusan;
 use App\Models\Penilaian;
 use App\Models\Perhitungan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AlternatifController extends Controller
 {
@@ -32,10 +34,10 @@ class AlternatifController extends Controller
         $validated = $request->validated();
 
         $alternatif = Alternatif::create($validated);
-        $createPenilaian = true;
+        $createPenilaian = false;
         $kriteria = Kriteria::get('id');
         if ($kriteria->first()) {
-            foreach (Kriteria::get('id') as $item) {
+            foreach ($kriteria as $item) {
                 $createPenilaian = Penilaian::create([
                     'alternatif_id' => $alternatif->id,
                     'kriteria_id' => $item->id,
@@ -100,6 +102,37 @@ class AlternatifController extends Controller
             return to_route('alternatif')->with('success', 'Alternatif Berhasil Dihapus');
         } else {
             return to_route('alternatif')->with('error', 'Alternatif Gagal Dihapus');
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'import_data' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('import_data');
+        Excel::import(new AlternatifImport, $file);
+
+        $kriteria = Kriteria::get('id');
+        $alternatif = Alternatif::get('id');
+        if ($kriteria->first()) {
+            Penilaian::truncate();
+            foreach ($kriteria as $value) {
+                foreach ($alternatif as $item) {
+                    $createPenilaian = Penilaian::create([
+                        'alternatif_id' => $item->id,
+                        'kriteria_id' => $value->id,
+                        'sub_kriteria_id' => null,
+                    ]);
+                }
+            }
+        }
+
+        if ($createPenilaian) {
+            return to_route('alternatif')->with('success', 'Alternatif Berhasil Disimpan');
+        } else {
+            return to_route('alternatif')->with('error', 'Alternatif Gagal Disimpan');
         }
     }
 }

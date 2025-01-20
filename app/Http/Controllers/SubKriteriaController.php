@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubKriteriaRequest;
 use App\Http\Resources\KriteriaResource;
 use App\Http\Resources\SubKriteriaResource;
+use App\Imports\SubKriteriaImport;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubKriteria;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubKriteriaController extends Controller
 {
@@ -73,6 +75,22 @@ class SubKriteriaController extends Controller
             return to_route('sub-kriteria')->with('success', 'Sub Kriteria '.$request->kriteria_nama.' Berhasil Dihapus');
         } else {
             return to_route('sub-kriteria')->with('error', 'Sub Kriteria '.$request->kriteria_nama.' Gagal Dihapus');
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'import_data' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('import_data');
+        $import = Excel::import(new SubKriteriaImport, $file);
+
+        if ($import) {
+            return to_route('sub-kriteria')->with('success', 'Sub Kriteria Berhasil Disimpan');
+        } else {
+            return to_route('sub-kriteria')->with('error', 'Sub Kriteria Gagal Disimpan');
         }
     }
 }
