@@ -30,7 +30,7 @@
                     "alternatif_id": alternatif_id
                 },
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
 
                     $("input[name='alternatif_id']").val(data[0].alternatif_id);
                     @foreach ($kriteria as $value => $item)

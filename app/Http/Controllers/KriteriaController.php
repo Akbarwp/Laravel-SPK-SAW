@@ -36,7 +36,7 @@ class KriteriaController extends Controller
         $this->checkSumBobot($request->id, $validated['bobot']);
 
         $kriteria = Kriteria::create($validated);
-        $createPenilaian = false;
+        $createPenilaian = true;
         $alternatif = Alternatif::get('id');
         if ($alternatif->first()) {
             foreach ($alternatif as $item) {
@@ -116,6 +116,7 @@ class KriteriaController extends Controller
 
         $kriteria = Kriteria::get('id');
         $alternatif = Alternatif::get('id');
+        $createPenilaian = true;
         if ($alternatif->first()) {
             Penilaian::truncate();
             foreach ($kriteria as $value) {

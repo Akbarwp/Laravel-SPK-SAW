@@ -34,7 +34,7 @@ class AlternatifController extends Controller
         $validated = $request->validated();
 
         $alternatif = Alternatif::create($validated);
-        $createPenilaian = false;
+        $createPenilaian = true;
         $kriteria = Kriteria::get('id');
         if ($kriteria->first()) {
             foreach ($kriteria as $item) {
@@ -116,6 +116,7 @@ class AlternatifController extends Controller
 
         $kriteria = Kriteria::get('id');
         $alternatif = Alternatif::get('id');
+        $createPenilaian = true;
         if ($kriteria->first()) {
             Penilaian::truncate();
             foreach ($kriteria as $value) {
