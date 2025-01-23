@@ -25,6 +25,7 @@ class KriteriaImport implements ToModel, WithStartRow, WithHeadingRow
         return new Kriteria([
             'kriteria' => $row['kriteria'],
             'bobot' => $row['bobot'],
+            'jenis_kriteria' => $row['jenis_kriteria'],
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

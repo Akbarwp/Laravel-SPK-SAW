@@ -15,6 +15,7 @@ class SubKriteriaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'sub_kriteria' => $this->sub_kriteria,
             'bobot' => $this->bobot,
             'kriteria' => new KriteriaResource($this->kriteria_id),

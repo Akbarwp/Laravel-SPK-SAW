@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kriteria');
             $table->double('bobot');
+            $table->enum('jenis_kriteria', ['benefit', 'cost']);
             $table->timestamps();
         });
     }

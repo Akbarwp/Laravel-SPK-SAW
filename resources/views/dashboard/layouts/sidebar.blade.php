@@ -69,6 +69,15 @@
             </li>
 
             <li class="mt-0.5 w-full">
+                <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["perhitungan"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("perhitungan") }}">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="ri-gradienter-fill relative top-0 text-lg leading-normal text-rose"></i>
+                    </div>
+                    <span class="ease pointer-events-none ml-1 opacity-100 duration-300">Perhitungan Metode</span>
+                </a>
+            </li>
+
+            {{-- <li class="mt-0.5 w-full">
                 <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["matriks-keputusan"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("matriks-keputusan") }}">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                         <i class="ri-seo-fill relative top-0 text-lg leading-normal text-rose"></i>
@@ -84,7 +93,7 @@
                     </div>
                     <span class="ease pointer-events-none ml-1 opacity-100 duration-300">Perankingan</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="mt-0.5 w-full">
                 <a class="py-2.7 ease-nav-brand {{ Request::routeIs(["hasil-akhir"]) ? "rounded-lg font text-rose bg-regal-blue/10" : "dark:text-avocado" }} mx-2 my-0 flex items-center whitespace-nowrap px-4 text-sm transition-colors hover:rounded-lg hover:bg-regal-blue/10" href="{{ route("hasil-akhir") }}">

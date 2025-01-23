@@ -26,6 +26,7 @@
             let loading = `<span class="loading loading-dots loading-md text-purple-600"></span>`;
             $("#loading_edit1").html(loading);
             $("#loading_edit2").html(loading);
+            $("#loading_edit3").html(loading);
 
             $.ajax({
                 type: "get",
@@ -41,10 +42,17 @@
                     $("input[name='kriteria']").val(data.kriteria);
                     $("input[name='bobot']").val(data.bobot);
 
+                    if (data.jenis_kriteria == "benefit") {
+                        $("#benefit").prop("checked", true);
+                    } else if (data.jenis_kriteria == "cost") {
+                        $("#cost").prop("checked", true);
+                    }
+
                     // Loading effect end
                     loading = "";
                     $("#loading_edit1").html(loading);
                     $("#loading_edit2").html(loading);
+                    $("#loading_edit3").html(loading);
                 }
             });
         }
@@ -138,6 +146,30 @@
                                     </div>
                                 @enderror
                             </label>
+                            <label class="form-control w-full">
+                                <div class="label">
+                                    <span class="label-text font-semibold">
+                                        <x-label-input-required>Jenis Kriteria</x-label-input-required>
+                                    </span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <span class="label-text">Cost</span>
+                                        <input type="radio" value="cost" name="jenis_kriteria" class="radio-primary radio" />
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <span class="label-text">Benefit</span>
+                                        <input type="radio" value="benefit" name="jenis_kriteria" class="radio-primary radio" checked />
+                                    </label>
+                                </div>
+                                @error("jenis_kriteria")
+                                    <div class="label">
+                                        <span class="label-text-alt text-sm text-error">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </label>
                             <button type="submit" class="btn btn-success mt-3 w-full text-regal-blue">Simpan</button>
                         </form>
                     </div>
@@ -182,6 +214,31 @@
                                 </div>
                                 <input type="number" min="0" max="1" step="0.01" name="bobot" class="input input-bordered w-full bg-spring-wood text-regal-blue" required />
                                 @error("bobot")
+                                    <div class="label">
+                                        <span class="label-text-alt text-sm text-error">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </label>
+                            <label class="form-control w-full">
+                                <div class="label">
+                                    <span class="label-text font-semibold">
+                                        <x-label-input-required>Jenis Kriteria</x-label-input-required>
+                                    </span>
+                                    <span class="label-text-alt" id="loading_edit3"></span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <span class="label-text">Cost</span>
+                                        <input type="radio" value="cost" name="jenis_kriteria" id="cost" class="radio-primary radio" />
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <span class="label-text">Benefit</span>
+                                        <input type="radio" value="benefit" name="jenis_kriteria" id="benefit" class="radio-primary radio" />
+                                    </label>
+                                </div>
+                                @error("jenis_kriteria")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                                     </div>
@@ -267,6 +324,9 @@
                                     <th>
                                         Bobot
                                     </th>
+                                    <th>
+                                        Jenis Kriteria
+                                    </th>
                                     <th class="rounded-tr">
                                         Aksi
                                     </th>
@@ -291,6 +351,11 @@
                                             </p>
                                         </td>
                                         <td>
+                                            <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                {{ $item->jenis_kriteria }}
+                                            </p>
+                                        </td>
+                                        <td>
                                             <div class="text-center align-middle">
                                                 <label for="edit_button" class="btn btn-outline btn-warning btn-sm" onclick="return edit_button('{{ $item->id }}')">
                                                     <i class="ri-pencil-line text-base"></i>
@@ -306,9 +371,10 @@
                             <tr>
                                 <td></td>
                                 <td class="text-right align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">Total Bobot:</td>
-                                <td class="text-left align-middle text-base font-bold leading-tight text-regal-blue dark:text-regal-blue">
+                                <td class="text-center align-middle text-base font-bold leading-tight text-regal-blue dark:text-regal-blue">
                                     {{ $sumBobot }} @if (number_format($sumBobot, 2) == 1) <span class="text-error">(max)</span>@endif
                                 </td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </table>

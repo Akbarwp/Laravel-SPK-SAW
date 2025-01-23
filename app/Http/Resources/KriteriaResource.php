@@ -15,8 +15,10 @@ class KriteriaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'kriteria' => $this->kriteria,
             'bobot' => $this->bobot,
+            'jenis_kriteria' => $this->jenis_kriteria,
         ];
     }
 }

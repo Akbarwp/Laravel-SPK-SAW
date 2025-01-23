@@ -35,17 +35,23 @@ class SAWController extends Controller
 
         MatriksKeputusan::truncate();
 
-        $maxBobot = Penilaian::query()
+        $maxMinBobot = Penilaian::query()
             ->join('kriteria as k', 'penilaian.kriteria_id', '=', 'k.id')
             ->join('sub_kriteria as sk', 'penilaian.sub_kriteria_id', '=', 'sk.id')
             ->groupBy('k.id', 'k.kriteria')
-            ->selectRaw("k.id as kriteria_id, k.kriteria as kriteria, MAX(sk.bobot) as max_bobot")
+            ->selectRaw("k.id as kriteria_id, k.kriteria as kriteria, MAX(sk.bobot) as max_bobot, MIN(sk.bobot) as min_bobot")
             ->get();
 
         foreach ($alternatif as $item) {
             foreach ($kriteria as $value) {
                 $penilaianAlternatif = $penilaian->where('alternatif_id', $item->id)->where('kriteria_id', $value->id)->first();
-                $nilaiRating = $penilaianAlternatif->subKriteria->bobot / $maxBobot->where('kriteria_id', $value->id)->first()->max_bobot;
+
+                if ($value->jenis_kriteria == 'benefit') {
+                    $nilaiRating = $penilaianAlternatif->subKriteria->bobot / $maxMinBobot->where('kriteria_id', $value->id)->first()->max_bobot;
+                } else if ($value->jenis_kriteria == 'cost') {
+                    $nilaiRating = $maxMinBobot->where('kriteria_id', $value->id)->first()->min_bobot / $penilaianAlternatif->subKriteria->bobot;
+                }
+
                 $createMatriks = MatriksKeputusan::create([
                     'alternatif_id' => $item->id,
                     'kriteria_id' => $value->id,
@@ -95,6 +101,33 @@ class SAWController extends Controller
             return to_route('ranking')->with('success', 'Perankingan Berhasil Dilakukan');
         } else {
             return to_route('ranking')->with('error', 'Perankingan Gagal Dilakukan');
+        }
+    }
+
+    public function indexPerhitungan()
+    {
+        $title = "Perhitungan Metode";
+
+        $isSubKriteriaPenilaianNull = Penilaian::where('sub_kriteria_id', null)->first();
+        $perhitungan = PerhitunganResource::collection(Perhitungan::get());
+
+        $matriksKeputusan = MatriksKeputusanResource::collection(MatriksKeputusan::get());
+        $kriteria = Kriteria::orderBy('id', 'asc')->get(['id', 'kriteria']);
+        $alternatif = Alternatif::orderBy('id', 'asc')->get(['id', 'alternatif']);
+        $penilaian = PenilaianResource::collection(Penilaian::get());
+
+        return view('dashboard.perhitungan.index', compact('title', 'matriksKeputusan', 'perhitungan', 'penilaian', 'kriteria', 'alternatif', 'isSubKriteriaPenilaianNull'));
+    }
+
+    public function perhitunganMetode()
+    {
+        $this->hitungMatriksKeputusan();
+        $perhitunganMetode = $this->hitungRanking();
+
+        if ($perhitunganMetode) {
+            return to_route('perhitungan')->with('success', 'Perhitungan Metode SAW Berhasil Dilakukan');
+        } else {
+            return to_route('perhitungan')->with('error', 'Perhitungan Metode SAW Gagal Dilakukan');
         }
     }
 }

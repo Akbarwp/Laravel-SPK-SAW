@@ -66,17 +66,17 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group([
-        'prefix' => 'matriks-keputusan',
+        'prefix' => 'saw',
     ], function() {
-        Route::get('/', [SAWController::class, 'indexMatriks'])->name('matriks-keputusan');
+        Route::get('/matriks-keputusan', [SAWController::class, 'indexMatriks'])->name('matriks-keputusan');
         Route::post('/hitung-matriks-keputusan', [SAWController::class, 'hitungMatriksKeputusan'])->name('matriks-keputusan.hitungMatriksKeputusan');
-    });
 
-    Route::group([
-        'prefix' => 'perankingan',
-    ], function() {
-        Route::get('/', [SAWController::class, 'indexRanking'])->name('ranking');
+        Route::get('/ranking', [SAWController::class, 'indexRanking'])->name('ranking');
         Route::post('/hitung-ranking', [SAWController::class, 'hitungRanking'])->name('ranking.hitungRanking');
+
+        Route::get('/perhitungan', [SAWController::class, 'indexPerhitungan'])->name('perhitungan');
+        Route::post('/perhitungan', [SAWController::class, 'perhitunganMetode'])->name('perhitungan.metode');
+
         Route::get('/pdf-hasil-akhir', [PDFController::class, 'pdf_hasil'])->name('pdf.hasilAkhir');
     });
 });

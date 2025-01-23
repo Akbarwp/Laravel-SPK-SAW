@@ -24,6 +24,7 @@ class KriteriaRequest extends FormRequest
         return [
             'kriteria' => 'required|string|max:255|unique:kriteria,kriteria,' . $this->id,
             'bobot' => 'required|decimal:0,2|min:0|max:1',
+            'jenis_kriteria' => 'required|string|in:benefit,cost',
         ];
     }
 }

@@ -15,6 +15,7 @@ class PenilaianResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'alternatif' => new AlternatifResource($this->alternatif_id),
             'kriteria' => new KriteriaResource($this->kriteria_id),
             'sub_kriteria' => new SubKriteriaResource($this->sub_kriteria_id),

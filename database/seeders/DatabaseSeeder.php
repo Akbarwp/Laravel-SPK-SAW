@@ -6,7 +6,6 @@ use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubKriteria;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,11 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin Admin',
-            'email' => 'admin@gmail.com',
-        ]);
-
         $kriteria[] = Kriteria::factory()->create([
             'kriteria' => 'Rasa',
             'bobot' => '0.25',
@@ -84,6 +78,7 @@ class DatabaseSeeder extends Seeder
         // }
 
         $this->call([
+            UserSeeder::class,
             PenilaianSeeder::class,
         ]);
     }

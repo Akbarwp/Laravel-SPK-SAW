@@ -19,6 +19,7 @@ class KriteriaFactory extends Factory
         return [
             'kriteria' => fake()->unique()->name(),
             'bobot' => fake()->randomFloat(2, 0, 1),
+            'jenis_kriteria' => fake()->randomElement(['benefit', 'cost']),
         ];
     }
 }
