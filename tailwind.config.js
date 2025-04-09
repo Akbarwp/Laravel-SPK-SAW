@@ -15,13 +15,25 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                plusJakartaSans: ['Plus Jakarta Sans'],
+                spaceGrotesk: ['Space Grotesk'],
             },
             colors: {
-                'spring-wood': '#F2F0E7',
-                'avocado': '#7F8A56',
-                'regal-blue': '#1D2955',
-                'akaroa': '#D8CAA7',
-                'rose': '#AC274F',
+                'background-cover': '#7F8A56',
+                'background-cover-dark': '#1D2955',
+
+                'background': '#FFFFFF',
+                'background-dark': '#1D2955',
+
+                'sidebar-background': '#F2F0E7',
+                'sidebar-primary': '#7F8A56',
+                'sidebar-background-dark': '#D8CAA7',
+                'sidebar-primary-dark': '#1D2955',
+
+                'primary-color': '#7F8A56',
+                'secondary-color': '#F2F0E7',
+                'primary-color-dark': '#1D2955',
+                'secondary-color-dark': '#D8CAA7',
             },
         },
     },

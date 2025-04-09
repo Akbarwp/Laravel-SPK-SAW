@@ -74,8 +74,8 @@
                                         </span>
                                         <span class="label-text-alt" id="{{ "loading_edit_" . $item->id }}"></span>
                                     </div>
-                                    <input type="text" name="kriteria_id[]" id="{{ "kriteria_id_" . $item->id }}" class="input input-bordered w-full bg-spring-wood text-regal-blue" hidden />
-                                    <select name="sub_kriteria_id[]" id="{{ "sub_kriteria_id_" . $item->id }}" class="select select-bordered w-full bg-spring-wood text-regal-blue" required>
+                                    <input type="text" name="kriteria_id[]" id="{{ "kriteria_id_" . $item->id }}" class="input input-bordered w-full bg-secondary-color text-primary-color-dark" hidden />
+                                    <select name="sub_kriteria_id[]" id="{{ "sub_kriteria_id_" . $item->id }}" class="select select-bordered w-full bg-secondary-color text-primary-color-dark" required>
                                         <option disabled selected>Pilih Kriteria!</option>
                                         @foreach ($subKriteria->where("kriteria_id", $item->id) as $value)
                                             <option value="{{ $value->id }}">{{ $value->sub_kriteria }}</option>
@@ -88,7 +88,7 @@
                                     @enderror
                                 </label>
                             @endforeach
-                            <button type="submit" class="btn btn-warning mt-3 w-full text-regal-blue">Perbarui</button>
+                            <button type="submit" class="btn btn-warning mt-3 w-full text-primary-color-dark">Perbarui</button>
                         </form>
                     </div>
                 </div>
@@ -114,14 +114,14 @@
                                         <x-label-input-required>File Excel</x-label-input-required>
                                     </span>
                                 </div>
-                                <input type="file" name="import_data" class="file-input file-input-bordered w-full bg-spring-wood text-regal-blue" required />
+                                <input type="file" name="import_data" class="file-input file-input-bordered w-full bg-secondary-color text-primary-color-dark" required />
                                 @error("import_data")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                                     </div>
                                 @enderror
                             </label>
-                            <button type="submit" class="btn btn-success mt-3 w-full text-regal-blue">Simpan</button>
+                            <button type="submit" class="btn btn-success mt-3 w-full text-primary-color-dark">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -129,9 +129,9 @@
             {{-- Akhir Modal Import --}}
 
             {{-- Awal Tabel Penilaian --}}
-            <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-spring-wood bg-clip-border shadow-xl dark:bg-white dark:shadow-akaroa/20">
+            <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-secondary-color bg-clip-border shadow-xl dark:bg-white dark:shadow-secondary-color-dark/20">
                 <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
-                    <h6 class="font-bold text-regal-blue">Tabel {{ $title }}</h6>
+                    <h6 class="font-bold text-primary-color-dark">Tabel {{ $title }}</h6>
                     <div class="w-1/2 max-w-full flex-none px-3 text-right">
                         <label for="import_button" class="mb-0 inline-block cursor-pointer rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 active:opacity-90 md:px-8 md:py-2" onclick="return import_button()">
                             <i class="ri-file-excel-2-line"></i>
@@ -143,7 +143,7 @@
                     <div class="overflow-x-auto p-0 px-6 pb-6">
                         <table id="myTable" class="nowrap stripe mb-3 w-full max-w-full border-collapse items-center align-top" style="width: 100%;">
                             <thead class="align-bottom">
-                                <tr class="bg-avocado text-xs font-bold uppercase text-white dark:bg-regal-blue dark:text-akaroa">
+                                <tr class="bg-primary-color text-xs font-bold uppercase text-white dark:bg-primary-color-dark dark:text-secondary-color-dark">
                                     <th class="rounded-tl"></th>
                                     @foreach ($kriteria as $item)
                                         <th>
@@ -159,13 +159,13 @@
                                 @foreach ($alternatif as $item)
                                     <tr class="border-b border-slate-600 bg-transparent">
                                         <td>
-                                            <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                            <p class="text-left align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                 {{ $item->alternatif }}
                                             </p>
                                         </td>
                                         @foreach ($penilaian->where("alternatif_id", $item->id) as $value)
                                             <td>
-                                                <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                                <p class="text-center align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                     @if ($value->sub_kriteria_id == null)
                                                         -
                                                     @else
@@ -189,12 +189,12 @@
                         <div class="w-fit overflow-x-auto">
                             <table class="table table-xs">
                                 <tr>
-                                    <td class="text-base font-semibold text-regal-blue">Keterangan:</td>
+                                    <td class="text-base font-semibold text-primary-color-dark">Keterangan:</td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-base text-regal-blue">* Pastikan setiap alternatif terisi semua</td>
-                                    <td class="text-base text-regal-blue"></td>
+                                    <td class="text-base text-primary-color-dark">* Pastikan setiap alternatif terisi semua</td>
+                                    <td class="text-base text-primary-color-dark"></td>
                                 </tr>
                             </table>
                         </div>

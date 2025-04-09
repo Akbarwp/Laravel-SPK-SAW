@@ -126,7 +126,7 @@
                                         <x-label-input-required>Kriteria</x-label-input-required>
                                     </span>
                                 </div>
-                                <input type="text" name="kriteria" class="input input-bordered w-full bg-spring-wood text-regal-blue" value="{{ old("kriteria") }}" required />
+                                <input type="text" name="kriteria" class="input input-bordered w-full bg-secondary-color text-primary-color-dark" value="{{ old("kriteria") }}" required />
                                 @error("kriteria")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
@@ -139,7 +139,7 @@
                                         <x-label-input-required>Bobot</x-label-input-required>
                                     </span>
                                 </div>
-                                <input type="number" min="0" max="1" step="0.01" name="bobot" class="input input-bordered w-full bg-spring-wood text-regal-blue" value="{{ old("bobot") }}" required />
+                                <input type="number" min="0" max="1" step="0.01" name="bobot" class="input input-bordered w-full bg-secondary-color text-primary-color-dark" value="{{ old("bobot") }}" required />
                                 @error("bobot")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
@@ -170,7 +170,7 @@
                                     </div>
                                 @enderror
                             </label>
-                            <button type="submit" class="btn btn-success mt-3 w-full text-regal-blue">Simpan</button>
+                            <button type="submit" class="btn btn-success mt-3 w-full text-primary-color-dark">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                                     </span>
                                     <span class="label-text-alt" id="loading_edit1"></span>
                                 </div>
-                                <input type="text" name="kriteria" class="input input-bordered w-full bg-spring-wood text-regal-blue" required />
+                                <input type="text" name="kriteria" class="input input-bordered w-full bg-secondary-color text-primary-color-dark" required />
                                 @error("kriteria")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
@@ -212,7 +212,7 @@
                                     </span>
                                     <span class="label-text-alt" id="loading_edit2"></span>
                                 </div>
-                                <input type="number" min="0" max="1" step="0.01" name="bobot" class="input input-bordered w-full bg-spring-wood text-regal-blue" required />
+                                <input type="number" min="0" max="1" step="0.01" name="bobot" class="input input-bordered w-full bg-secondary-color text-primary-color-dark" required />
                                 @error("bobot")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
@@ -244,7 +244,7 @@
                                     </div>
                                 @enderror
                             </label>
-                            <button type="submit" class="btn btn-warning mt-3 w-full text-regal-blue">Perbarui</button>
+                            <button type="submit" class="btn btn-warning mt-3 w-full text-primary-color-dark">Perbarui</button>
                         </form>
                     </div>
                 </div>
@@ -270,14 +270,14 @@
                                         <x-label-input-required>File Excel</x-label-input-required>
                                     </span>
                                 </div>
-                                <input type="file" name="import_data" class="file-input file-input-bordered w-full bg-spring-wood text-regal-blue" required />
+                                <input type="file" name="import_data" class="file-input file-input-bordered w-full bg-secondary-color text-primary-color-dark" required />
                                 @error("import_data")
                                     <div class="label">
                                         <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                                     </div>
                                 @enderror
                             </label>
-                            <button type="submit" class="btn btn-success mt-3 w-full text-regal-blue">Simpan</button>
+                            <button type="submit" class="btn btn-success mt-3 w-full text-primary-color-dark">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -285,9 +285,9 @@
             {{-- Akhir Modal Import --}}
 
             {{-- Awal Tabel Kriteria --}}
-            <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-spring-wood bg-clip-border shadow-xl dark:bg-white dark:shadow-akaroa/20">
+            <div class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-secondary-color bg-clip-border shadow-xl dark:bg-white dark:shadow-secondary-color-dark/20">
                 <div class="border-b-solid mb-0 flex items-center justify-between rounded-t-2xl border-b-0 border-b-transparent p-6 pb-3">
-                    <h6 class="font-bold text-regal-blue">Tabel {{ $title }}</h6>
+                    <h6 class="font-bold text-primary-color-dark">Tabel {{ $title }}</h6>
                     <div class="w-1/2 max-w-full flex-none px-3 text-right">
                         @if (number_format($sumBobot, 2) == 1)
                             <button class="mb-0 inline-block cursor-default rounded-lg border border-solid border-success bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal tracking-tight text-success opacity-60 shadow-none md:px-8 md:py-2">
@@ -314,7 +314,7 @@
                     <div class="overflow-x-auto p-0 px-6 pb-6">
                         <table id="myTable" class="nowrap stripe mb-3 w-full max-w-full border-collapse items-center align-top" style="width: 100%;">
                             <thead class="align-bottom">
-                                <tr class="bg-avocado text-xs font-bold uppercase text-white dark:bg-regal-blue dark:text-akaroa">
+                                <tr class="bg-primary-color text-xs font-bold uppercase text-white dark:bg-primary-color-dark dark:text-secondary-color-dark">
                                     <th class="rounded-tl">
                                         No.
                                     </th>
@@ -334,24 +334,24 @@
                             </thead>
                             <tbody>
                                 @foreach ($kriteria as $value => $item)
-                                    <tr class="border-b border-regal-blue bg-transparent">
+                                    <tr class="border-b border-primary-color-dark bg-transparent">
                                         <td>
-                                            <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                            <p class="text-center align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                 {{ $value + 1 }}.
                                             </p>
                                         </td>
                                         <td>
-                                            <p class="text-left align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                            <p class="text-left align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                 {{ $item->kriteria }}
                                             </p>
                                         </td>
                                         <td>
-                                            <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                            <p class="text-center align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                 {{ $item->bobot }}
                                             </p>
                                         </td>
                                         <td>
-                                            <p class="text-center align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">
+                                            <p class="text-center align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                                 {{ $item->jenis_kriteria }}
                                             </p>
                                         </td>
@@ -370,8 +370,8 @@
                             </tbody>
                             <tr>
                                 <td></td>
-                                <td class="text-right align-middle text-base font-semibold leading-tight text-regal-blue dark:text-regal-blue">Total Bobot:</td>
-                                <td class="text-center align-middle text-base font-bold leading-tight text-regal-blue dark:text-regal-blue">
+                                <td class="text-right align-middle text-base font-semibold leading-tight text-primary-color-dark dark:text-primary-color-dark">Total Bobot:</td>
+                                <td class="text-center align-middle text-base font-bold leading-tight text-primary-color-dark dark:text-primary-color-dark">
                                     {{ $sumBobot }} @if (number_format($sumBobot, 2) == 1) <span class="text-error">(max)</span>@endif
                                 </td>
                                 <td></td>
@@ -382,12 +382,12 @@
                         <div class="w-fit overflow-x-auto">
                             <table class="table table-xs">
                                 <tr>
-                                    <td class="text-base font-semibold text-regal-blue">Keterangan:</td>
+                                    <td class="text-base font-semibold text-primary-color-dark">Keterangan:</td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-base text-regal-blue">Total bobot harus:</td>
-                                    <td class="text-base text-regal-blue">1</td>
+                                    <td class="text-base text-primary-color-dark">Total bobot harus:</td>
+                                    <td class="text-base text-primary-color-dark">1</td>
                                 </tr>
                             </table>
                         </div>
