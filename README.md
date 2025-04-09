@@ -4,7 +4,7 @@ Laravel SPK SAW is a website designed to provide a decision support system using
 
 ## Tech Stack
 
-- **Laravel 11**
+- **Laravel 11** --> **Laravel 12**
 - **Laravel Breeze**
 - **MySQL Database**
 - **TailwindCSS**
@@ -16,6 +16,7 @@ Laravel SPK SAW is a website designed to provide a decision support system using
 
 - Main features available in this application:
   - Implementation SAW method
+  - Import data --> example [Kriteria](https://github.com/user-attachments/files/19659807/Import.Kriteria.xlsx), [Sub kriteria](https://github.com/user-attachments/files/19659809/Import.Sub.Kriteria.xlsx), [Alternatif](https://github.com/user-attachments/files/19659806/Import.Alternatif.xlsx), [Penilaian](https://github.com/user-attachments/files/19659808/Import.Penilaian.xlsx)
 
 ## Installation
 
